@@ -32,7 +32,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+        # CodeQL for SAST
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
@@ -46,3 +46,12 @@ jobs:
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
+
+
+        #Snyk for SCA
+      - name: Checkout repository
+        uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
