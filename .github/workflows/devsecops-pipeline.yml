@@ -47,7 +47,13 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
       
-        #Set up node for Snyk
+        
+
+        #Snyk for SCA
+      - name: Checkout repository
+        uses: actions/checkout@master
+
+      #Set up node for Snyk
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -57,9 +63,6 @@ jobs:
         run: |
           npm install
 
-        #Snyk for SCA
-      - name: Checkout repository
-        uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
         env:
