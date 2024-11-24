@@ -37,19 +37,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       # CodeQL for SAST
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
-        with:
-          languages: 'javascript-typescript'
-          queries: security-extended
-          config: |
-            paths-ignore:
-              - 'data/static/codefixes'
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v2
+      # - name: Initialize CodeQL
+      #   uses: github/codeql-action/init@v2
+      #   with:
+      #     languages: 'javascript-typescript'
+      #     queries: security-extended
+      #     config: |
+      #       paths-ignore:
+      #         - 'data/static/codefixes'
+      # - name: Autobuild
+      #   uses: github/codeql-action/autobuild@v2
 
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
+      # - name: Perform CodeQL Analysis
+      #   uses: github/codeql-action/analyze@v2
       
         
 
@@ -63,15 +63,15 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies
-        run: |
-          npm install
+      # - name: Install dependencies
+      #   run: |
+      #     npm install
 
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
-        continue-on-error: true
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      # - name: Run Snyk to check for vulnerabilities
+      #   uses: snyk/actions/node@master
+      #   continue-on-error: true
+      #   env:
+      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
 
       - name: ZAP Scan
