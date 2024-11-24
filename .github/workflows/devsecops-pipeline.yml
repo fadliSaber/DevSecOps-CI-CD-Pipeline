@@ -77,5 +77,9 @@ jobs:
       - name: ZAP Scan
         uses: zaproxy/action-full-scan@v0.12.0
         with:
-          target: 'http://juice-shop:3000'
-      
+          target: 'http://juice-shop:3000'  
+          
+      - name: Check zap working directory
+        run: |
+          echo "list all files in /zap"
+          ls -R /zap
