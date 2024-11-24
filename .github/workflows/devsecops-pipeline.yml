@@ -82,4 +82,4 @@ jobs:
       - name: Check zap working directory
         run: |
           echo "list all files in /zap"
-          ls -R /zap
+          ls -R ./zap
