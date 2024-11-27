@@ -87,3 +87,17 @@ jobs:
         with: 
           name: zap-results
           path: /home/runner/work/DevSecOps-CI-CD-Pipeline/DevSecOps-CI-CD-Pipeline/*.html
+
+  deploy:
+    name: Deploy OWASP Juice Shop
+    runs-on: ubuntu-latest
+    needs: security
+    if: success()
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy updated Juice Shop application
+        run: |
+          docker run -d -p 3000:3000 --name juice-shop bkimminich/juice-shop
